@@ -24,8 +24,8 @@ const ibmMono = IBM_Plex_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Haywood Road Ledger — West Asheville Coffee Walk',
-  description: 'A walking ledger for Haywood Road, West Asheville NC. Ten stops. One road. Walk it.',
+  title: 'Cedarburg Hopper',
+  description: 'Walk Washington Avenue. Ten stops. One of Wisconsin\'s most beautiful historic main streets, from C. Wiesler\'s Tavern to Cedar Creek Winery.',
 }
 
 export default function RootLayout({

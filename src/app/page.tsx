@@ -21,13 +21,13 @@ export default function Home() {
            West Asheville, NC
         </p>
         <h1 className="font-serif text-5xl font-black text-[#f5edd8] leading-none">
-          Haywood Road
+          Cedarburg
         </h1>
         <h2 className="font-serif text-4xl italic text-[#c8973a] leading-none mt-1">
-          Ledger
+          Hopper
         </h2>
         <p className="text-[#e8d9b8] text-sm italic mt-3 opacity-70">
-          Along Haywood Road
+          Wisconsin&rsquo;s most beautiful main street. Walk it.
         </p>
         <div className="flex items-center justify-center gap-3 mt-4 text-[#c8973a] opacity-50 text-sm">
           <span>☕</span><span>✦</span><span>☕</span>
@@ -37,14 +37,10 @@ export default function Home() {
       {/* INTRO */}
       <div className="max-w-2xl mx-auto px-6 py-10">
         <p className="font-serif text-lg leading-relaxed text-[#1a1208]">
-          Haywood Road has carried people west for over a century,
-          first as the old turnpike toward Haywood County. Today it
-          holds ten coffee shops that each feel like their own place.
-        </p>
-        <p className="font-serif text-lg leading-relaxed text-[#1a1208] mt-4">
-          This passport is a way to walk it. Start on the east
-          end and keep going. After I-240 it gets quieter. That's
-          where the road opens up.
+          Washington Avenue has carried people through Cedarburg since
+          the 1840s. Today it holds ten stops that each feel like their
+          own place. Start at the south end. Keep going. After the
+          covered bridge it gets quieter. That&rsquo;s where the mill opens up.
         </p>
 
         {/* CTA */}
@@ -78,7 +74,7 @@ export default function Home() {
 
         {/* East Haywood stops */}
         <p className="font-mono text-[11px] tracking-widest text-[#6b3f1e] opacity-80 uppercase mb-4 border-l-2 border-[#c8973a]/40 pl-3">
-          East Haywood
+          South of the Bridge
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
@@ -116,7 +112,7 @@ export default function Home() {
 
         {/* West Haywood stops */}
         <p className="font-mono text-[11px] tracking-widest text-[#6b3f1e] opacity-80 uppercase mb-4 border-l-2 border-[#c8973a]/40 pl-3">
-          West Haywood
+          The Mill District
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
