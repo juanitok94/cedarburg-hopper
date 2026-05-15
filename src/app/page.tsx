@@ -112,7 +112,7 @@ export default function Home() {
 
         {/* West Haywood stops */}
         <p className="font-mono text-[11px] tracking-widest text-[#6b3f1e] opacity-80 uppercase mb-4 border-l-2 border-[#c8973a]/40 pl-3">
-          The Mill District
+          The Mill End
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
