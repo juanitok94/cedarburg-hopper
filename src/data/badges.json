@@ -1,54 +1,43 @@
 [
   {
     "id": "curious",
-    "label": "West AVL Curious",
+    "label": "Curious About Washington Ave",
     "threshold": 3,
     "type": "core",
     "icon": "☕",
-    "color": "#8B5E3C",
-    "description": "You've started walking the road.",
+    "color": "#8B5E3A",
+    "description": "You've started walking the avenue.",
     "compostela": false
   },
   {
     "id": "regular",
-    "label": "Haywood Regular",
+    "label": "Regular at the Mill",
     "threshold": 7,
     "type": "core",
-    "icon": "🏘",
-    "color": "#b84c1a",
-    "description": "Seven in. You're becoming a local.",
+    "icon": "🏛",
+    "color": "#4A5E3A",
+    "description": "Seven in. You know your way around.",
     "compostela": false
   },
   {
     "id": "local",
-    "label": "True Local",
+    "label": "True Cedarburger",
     "threshold": 10,
     "type": "core",
     "icon": "⭐",
-    "color": "#c8973a",
-    "description": "You walked all of Haywood Road. This is yours.",
+    "color": "#8B6914",
+    "description": "You walked all of Washington Avenue. This is yours.",
     "compostela": true
   },
   {
-    "id": "devotee",
-    "label": "Haywood Devotee",
-    "threshold": 3,
+    "id": "mill-five",
+    "label": "You Walked the Whole Thing",
+    "threshold": 5,
     "type": "bonus",
     "icon": "🗺",
-    "color": "#1A3A6A",
-    "description": "You found the hidden ones too. Not everyone does.",
+    "color": "#2F4F6F",
+    "description": "You found the Mill Five. Not everyone does.",
     "compostela": false,
-    "note": "Unlocked by collecting all bonus stamps — OWL, Flora/Forage, Firestorm, Mocha Box"
-  },
-  {
-    "id": "hygge",
-    "label": "Hygge Five",
-    "threshold": 5,
-    "type": "special",
-    "icon": "🕯",
-    "color": "#5a7a4a",
-    "description": "The five warmest rooms on Haywood Road. You found all of them.",
-    "compostela": false,
-    "note": "Unlocked by stamping all five hygge:true shops — Rowan, Bad Manners, Odd's, OWL, Forage at Flora"
+    "note": "Unlocked by collecting all 5 Mill Five bonus stamps inside Cedar Creek Settlement"
   }
 ]
