@@ -1,41 +1,43 @@
-# Haywood Hoppers — Claude Code Project Brief
+# Cedarburg Hopper — Claude Code Project Brief
 > John Kean · Peachy Kean DevOps LLC · Asheville, NC
-> Last updated: March 27, 2026
+> Last updated: May 15, 2026
 
 ## What This Is
-Haywood Hoppers is a mobile-first digital coffee passport
-for Haywood Road, West Asheville, NC. 10 core stops,
-east to west. Users walk the road, stamp each stop,
-discover hidden collections. No auth, no login,
+Cedarburg Hopper is a mobile-first digital walking passport
+for Washington Avenue, Cedarburg, Wisconsin. 10 stops,
+south to north. Users walk the avenue, stamp each stop,
+discover a hidden collection. No auth, no login,
 localStorage only.
 
 ## Live URLs
-- Production: wavl-guide.vercel.app
-- Repo: github.com/juanitok94/wavl-guide
-- Local: localhost:3000 (npm run dev in C:\wavl-guide)
+- Production: cedarburg-hopper.vercel.app
+- Repo: github.com/juanitok94/cedarburg-hopper
+- Local: localhost:3000 (npm run dev in C:\cedarburg-hopper)
 
 ## Tech Stack
-- Next.js 16 App Router
+- Next.js App Router
 - TypeScript (strict)
 - Tailwind CSS 4
 - localStorage for all user state
+- Static JSON data files (no database)
 - Vercel for deployment (auto-deploy on git push)
 
 ## Design Principles — Non-Negotiable
 1. Hygge — warmth, slowness, belonging
-2. Camino — journey, earned progress, east to west
+2. Camino — journey, earned progress, south to north
 3. Krug — don't make me think, clarity first
 4. Mobile-first — primary user is holding a phone
-   on Haywood Road. Desktop is graceful enhancement only.
+   on Washington Avenue. Desktop is graceful enhancement only.
 5. Human first — if it feels like a generic app,
-   it's wrong. It should feel like West Asheville.
+   it's wrong. It should feel like Cedarburg.
 
 ## Color System — Do Not Change
-- Parchment background: #f5edd8
-- Espresso dark: #3b1f0a
-- Gold accent: #c8973a
-- Rust primary: #6b3f1e
-- Body text: #1a1208
+- Parchment background: #FAF6F0  (--color-parchment)
+- Espresso dark:        #2A1810  (--color-espresso)
+- Gold accent:          #B8893A  (--color-gold)
+- Rust primary:         #8B3A2E  (--color-rust)
+- Ink body text:        #1F1A14  (--color-ink)
+- Sage secondary:       #7A8B6E  (--color-sage)
 
 ## Typography — Do Not Change
 - Playfair Display — headings (font-serif)
@@ -43,43 +45,39 @@ localStorage only.
 - IBM Plex Mono — labels, UI elements (font-mono)
 
 ## Two ICPs
-1. TOURISTS — visiting Asheville, want authentic local
-   experiences, not chains, not tourist traps.
+1. TOURISTS — visiting Cedarburg, want authentic small-town
+   Wisconsin character, not chains, not tourist traps.
    Respond to discovery, walking, feeling like an insider.
-2. BUSINESS OWNERS — independent shop owners on Haywood
+2. BUSINESS OWNERS — independent shop owners on Washington Ave
    who want foot traffic and to feel proud of being
    featured, not marketed at.
 
-## The 10 Core Stops (east to west)
-| # | Shop | Street Side |
-|---|------|-------------|
-| 1 | Cooperative Coffee Roasters | North |
-| 2 | BattleCat Coffee Bar | South |
-| 3 | Flora & Forage | North |
-| 4 | Haywood Famous | North |
-| 5 | Bad Manners Coffee | South |
-| 6 | Rowan Coffee | South |
-| 7 | Odd's Cafe | North |
-| 8 | Plant Bar | South |
-| 9 | Izzy's Coffee House | North |
-| 10 | West End Bakery | South |
+## The Route
+Washington Avenue runs south to north through historic
+downtown Cedarburg. The Covered Bridge divides the route
+into two zones.
 
-## Bonus/Directory Stops
-- Firestorm Books & Coffee (Hygge Five anchor, Prague 1993)
-- Asheville Kava X Coffee (demoted — gas station adjacent)
-- Deep Time Coffee (demoted — open only 4 days/week)
+### Zone 1 — South of the Bridge (stops 1–5)
+| # | Stop |
+|---|------|
+| 1 | C. Wiesler's Tavern |
+| 2 | Cedarburg Cultural Center |
+| 3 | Union House |
+| 4 | Rivoli Theatre |
+| 5 | Handen Distillery |
 
-## Honorable Mentions
-- Dobra Tea West (strong candidate — tea-forward, excellent vibe)
-- Potential New Boyfriend
+### Zone 2 — The Mill End (stops 6–10)
+| # | Stop |
+|---|------|
+| 6 | Cedarburg Coffee Roastery |
+| 7 | Fiddleheads Coffee |
+| 8 | The Stilt House |
+| 9 | Cedarburg Art Museum |
+| 10 | Cedar Creek Winery |
 
-## Core Stop Eligibility Rule
-A shop must be open minimum 5 days per week to qualify
-as a core passport stop. Coffee or tea as primary mission.
-
-## The Hygge Five
-A hidden collection of 5 stops where time slows down.
-Currently under revision — do not modify hygge flags
+## The Mill Five
+A hidden collection flagged in shops.json (`"hygge": true`).
+Not yet wired into the UI. Do not modify hygge flags
 in shops.json without confirming with John first.
 
 ## File Structure
@@ -87,8 +85,10 @@ src/
   app/
     page.tsx          — homepage
     map/page.tsx      — interactive map
-    passport/         — stamp collection
+    passport/page.tsx — stamp collection
     stop/[slug]/      — individual stop pages
+    globals.css       — design tokens and base styles
+    layout.tsx        — root layout, metadata, fonts
   data/
     shops.json        — canonical data, source of truth
     layers.json       — map filter layers
@@ -110,60 +110,24 @@ src/
    fix: for corrections
    refactor: for restructuring
 
-## Current Build Status (March 28, 2026)
-- ✅ Homepage
+## Current Build Status (May 15, 2026)
+- ✅ Homepage with zone labels and hero copy
 - ✅ Passport page
 - ✅ Stop pages (individual)
-- ✅ Map page with flip toggle
-- ✅ Mobile-first card upgrade
-- ✅ Copy wordsmith pass (ChatGPT)
-- ✅ streetSide field added to all shops
-- ✅ Share button on stop pages
-- ✅ Progressive disclosure on stop pages
-- ✅ Shop photo zone with FPO fallback
-- ✅ Stop page I-240 zone label fix
-- ✅ Map bottom sheet popup with spring animation
-- ✅ Photo naming convention established
-- ✅ First shop owner contact (Eva, Haywood Famous)
-- ✅ Travel writer outreach (Kayleigh Ruller, Eater/Condé Nast)
-- ✅ Billy Cooley connection (Downtown Asheville Association)
-- ⬜ shops.json restructure (Flora, Dobra as core)
+- ✅ Map page
+- ✅ Color tokens in globals.css
+- ✅ Metadata: title and description
+- ✅ stamp.welcomeLine and stamp.subLine for anchor stops
+   (Wiesler's, Rivoli, Cedar Creek Winery)
+- ⬜ stamp copy for remaining stops
+- ⬜ The Mill Five wired into UI
 - ⬜ BottomNav
-- ⬜ ChatGPT content for Flora, Dobra, Bad Manners
-- ⬜ Dark mode (post user testing)
-- ⬜ Shop photos (after photo walk)
+- ⬜ Shop photos
 - ⬜ Progress visualization on passport page
+- ⬜ Dark mode (post user testing)
 
 ## Photo Library
 Photos location: public/images/shops/
 Naming convention: {shop-id}-exterior.jpg,
 {shop-id}-interior.jpg, {shop-id}-interior-2.jpg
-
-### Current Inventory
-- flora-forage-exterior.jpg ✅
-- flora-forage-interior.jpg ✅
-- flora-forage-interior-2.jpg ✅
-- flora-forage-interior-3.jpg ✅
-- haywood-famous-exterior.jpg ✅
-- haywood-famous-interior.jpg ✅
-- owl-bakery-exterior.jpg ✅
-- owl-bakery-interior.jpg (FPO) ✅
-- cooperative-coffee-roasters-exterior.jpg ✅
-- cooperative-coffee-roasters-interior.jpg (FPO) ✅
-
-### Still Needed
-- battlecat-coffee-bar-exterior.jpg
-- battlecat-coffee-bar-interior.jpg
-- bad-manners-coffee-exterior.jpg
-- bad-manners-coffee-interior.jpg
-- rowan-coffee-exterior.jpg
-- rowan-coffee-interior.jpg
-- odds-cafe-exterior.jpg
-- odds-cafe-interior.jpg
-- plant-bar-exterior.jpg
-- plant-bar-interior.jpg
-- izzys-coffee-house-exterior.jpg
-- izzys-coffee-house-interior.jpg
-- west-end-bakery-exterior.jpg
-- west-end-bakery-interior.jpg
-- haywood-famous-interior.jpg
+All shop photos still needed.
