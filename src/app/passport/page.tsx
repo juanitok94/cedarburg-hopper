@@ -56,7 +56,7 @@ export default function PassportPage() {
           className="font-mono text-[10px] tracking-widest text-[#c8973a] opacity-60
                      hover:opacity-100 transition-opacity uppercase"
         >
-          ← Haywood Hoppers
+          ← Cedarburg Hopper
         </Link>
         <h1 className="font-serif text-3xl font-black text-[#f5edd8] mt-3">
           Your Passport
@@ -123,7 +123,7 @@ export default function PassportPage() {
         {/* North section */}
         <div className="flex items-center gap-3 mb-4">
           <p className="font-mono text-[10px] tracking-widest text-[#6b3f1e] opacity-60 uppercase whitespace-nowrap">
-            North of I-240
+            The Mill End
           </p>
           <div className="flex-1 border-t border-dashed border-[#6b3f1e] opacity-30" />
         </div>
@@ -152,7 +152,7 @@ export default function PassportPage() {
         {/* South section */}
         <div className="flex items-center gap-3 mb-4">
           <p className="font-mono text-[10px] tracking-widest text-[#6b3f1e] opacity-60 uppercase whitespace-nowrap">
-            South of I-240
+            South of the Bridge
           </p>
           <div className="flex-1 border-t border-dashed border-[#6b3f1e] opacity-30" />
         </div>
