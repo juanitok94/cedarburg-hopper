@@ -125,19 +125,6 @@ export default function StopPage({ params }: { params: Promise<{ slug: string }>
         )}
       </div>
 
-      {/* IMAGE ZONE */}
-      <div className="relative w-full h-48 overflow-hidden">
-        <img
-          src={`/images/shops/${shop.id}.jpg`}
-          alt={shop.name}
-          className="w-full h-48 object-cover"
-          onError={(e) => {
-            e.currentTarget.style.display = 'none'
-            e.currentTarget.nextElementSibling
-              ?.removeAttribute('hidden')
-          }}
-        />
-      </div>
 
       <div className="max-w-lg mx-auto px-6 py-8">
 
