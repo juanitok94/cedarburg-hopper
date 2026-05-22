@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cedarburg Hopper · Washington Avenue · Peachy Kean DevOps</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:       #fdf8ee;
+      --surface:  #fffdf5;
+      --border:   #d4b888;
+      --primary:  #7a0000;
+      --accent:   #5c3317;
+      --text:     #2a1a0a;
+      --muted:    #7a5040;
+      --badge-bg: rgba(122,0,0,0.07);
+      --badge-fg: #7a0000;
+      --badge-bd: rgba(122,0,0,0.16);
+      --shadow:   rgba(60,20,0,0.09);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: 'Crimson Pro', Georgia, serif; font-size: 16px; line-height: 1.6; }
+
+    .hero { text-align: center; padding: 3.5rem 1.5rem 3rem; background: var(--primary); border-bottom: 4px solid var(--accent); }
+    .hero-eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 1rem; }
+    .hero-title { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(2rem, 8vw, 4rem); color: #fff; line-height: 1.1; margin-bottom: 0.4rem; }
+    .hero-street { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; letter-spacing: 0.16em; color: rgba(255,255,255,0.4); text-transform: uppercase; margin-bottom: 0.75rem; }
+    .hero-tagline { font-style: italic; font-size: 1.05rem; color: rgba(255,255,255,0.58); max-width: 34rem; margin: 0 auto 1.75rem; }
+    .hero-cta { display: inline-block; padding: 0.6rem 1.5rem; background: #d4b888; color: var(--text); font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; font-weight: 500; }
+    .hero-cta:hover { opacity: 0.85; }
+
+    .pitch { max-width: 50rem; margin: 0 auto; padding: 2.5rem 1.5rem 2rem; text-align: center; border-bottom: 1px solid var(--border); }
+    .pitch h2 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.55rem; color: var(--text); margin-bottom: 0.65rem; }
+    .pitch p { font-size: 1.05rem; color: var(--muted); max-width: 36rem; margin: 0 auto 1.5rem; }
+    .pitch-stats { display: flex; justify-content: center; gap: 2.5rem; flex-wrap: wrap; }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--primary); line-height: 1; }
+    .stat-lbl { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+
+    .filters { position: sticky; top: 0; z-index: 10; background: var(--bg); border-bottom: 1px solid var(--border); padding: 0.7rem 1.25rem; display: flex; gap: 0.4rem; overflow-x: auto; scrollbar-width: none; }
+    .filters::-webkit-scrollbar { display: none; }
+    .filter-btn { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.3rem 0.7rem; border: 1px solid var(--border); background: var(--surface); color: var(--muted); cursor: pointer; white-space: nowrap; transition: all 0.12s; }
+    .filter-btn:hover { color: var(--primary); border-color: var(--primary); }
+    .filter-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+
+    .cards { max-width: 74rem; margin: 0 auto; padding: 1.75rem 1.25rem 3rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(268px, 1fr)); gap: 1.1rem; }
+    .card { background: var(--surface); border: 1px solid var(--border); padding: 1.1rem 1.2rem; transition: transform 0.12s, box-shadow 0.12s; }
+    .card:hover { transform: translateY(-2px); box-shadow: 0 4px 18px var(--shadow); }
+    .card-bar { height: 3px; margin: -1.1rem -1.2rem 0.9rem; }
+    .card-stop { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.3rem; }
+    .card-name { font-family: 'Playfair Display', Georgia, serif; font-size: 1.15rem; color: var(--text); line-height: 1.2; margin-bottom: 0.2rem; }
+    .card-addr { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; color: var(--muted); margin-bottom: 0.7rem; }
+    .badges { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-bottom: 0.65rem; }
+    .badge { font-family: 'IBM Plex Mono', monospace; font-size: 0.56rem; letter-spacing: 0.07em; text-transform: uppercase; padding: 0.18rem 0.45rem; background: var(--badge-bg); color: var(--badge-fg); border: 1px solid var(--badge-bd); }
+    .card-hours { font-size: 0.82rem; color: var(--muted); margin-bottom: 0.5rem; }
+    .card-tip { font-style: italic; font-size: 0.87rem; color: var(--text); border-left: 2px solid var(--accent); padding-left: 0.6rem; margin-bottom: 0.6rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .card-meta { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.4rem; }
+    .card-rating { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; color: var(--muted); }
+    .card-links { display: flex; gap: 0.65rem; }
+    .card-link { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--primary); text-decoration: underline; text-underline-offset: 3px; }
+    .card-link:hover { opacity: 0.65; }
+
+    .footer { background: var(--primary); color: rgba(255,255,255,0.5); text-align: center; padding: 2.5rem 1.5rem; border-top: 3px solid var(--accent); }
+    .footer-brand { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: rgba(255,255,255,0.88); margin-bottom: 0.35rem; }
+    .footer-sub { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; letter-spacing: 0.13em; text-transform: uppercase; margin-bottom: 1.1rem; }
+    .footer-cta { display: inline-block; padding: 0.5rem 1.25rem; border: 1px solid rgba(255,255,255,0.22); color: rgba(255,255,255,0.7); font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; }
+    .footer-cta:hover { border-color: #d4b888; color: #d4b888; }
+
+    @media (max-width: 460px) { .cards { grid-template-columns: 1fr; padding: 1.25rem 1rem 2.5rem; } }
+  </style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-eyebrow">Peachy Kean DevOps LLC · Walkbook Sample</div>
+  <h1 class="hero-title">Cedarburg Hopper</h1>
+  <div class="hero-street">Washington Avenue · Cedarburg, WI 53012</div>
+  <p class="hero-tagline">Est. 1846. The fish fry. The winery. The volunteer cinema.</p>
+  <a href="/" class="hero-cta">Open the Full Walkbook ↗</a>
+</header>
+
+<section class="pitch">
+  <h2>What is a Walkbook?</h2>
+  <p>A mobile-first digital passport for your street. Visitors collect stamps, discover insider tips, and stay longer than they planned. No app download. No login. Just walk.</p>
+  <div class="pitch-stats">
+    <div><div class="stat-num">10</div><div class="stat-lbl">Core Stops</div></div>
+    <div><div class="stat-num">0</div><div class="stat-lbl">Ads</div></div>
+    <div><div class="stat-num">∞</div><div class="stat-lbl">Local</div></div>
+  </div>
+</section>
+
+<nav class="filters" id="filters"></nav>
+<main class="cards" id="cards"></main>
+
+<footer class="footer">
+  <div class="footer-brand">Peachy Kean DevOps, LLC</div>
+  <div class="footer-sub">Walkbooks for independent business districts</div>
+  <a href="mailto:john@peachykeandev.com" class="footer-cta">Get a Walkbook for your street →</a>
+</footer>
+
+<script>
+const SHOPS = [
+  {id:"wieslers-tavern",name:"C. Wiesler's Tavern",address:"W61N493 Washington Ave",city:"Cedarburg",state:"WI",layers:["bars","restaurants"],passportStop:1,selloColor:"#5C3317",rating:4.2,instagram:null,website:"https://wieslers.com",hours:{mon:"closed",tue:"closed",wed:"5PM–8PM",thu:"5PM–8PM",fri:"4:30PM–9PM",sat:"4PM–8PM",sun:"closed"},tip:"Friday fish fry — grilled or beer-battered haddock. Come before 6pm or wait for a table. The booth in the back left corner has the best light."},
+  {id:"cedarburg-cultural-center",name:"Cedarburg Cultural Center",address:"W62N546 Washington Ave",city:"Cedarburg",state:"WI",layers:["museums","attractions"],passportStop:2,selloColor:"#4A5E3A",rating:4.7,instagram:null,website:"https://cedarburgculturalcenter.org",hours:{mon:"closed",tue:"10AM–5PM",wed:"10AM–5PM",thu:"10AM–5PM",fri:"10AM–5PM",sat:"10AM–5PM",sun:"12PM–4PM"},tip:"Check the event calendar before you visit — there's almost always something happening. First Fridays bring a local band and a room full of people who know each other."},
+  {id:"union-house",name:"Union House",address:"W62N559 Washington Ave",city:"Cedarburg",state:"WI",layers:["restaurants","bars"],passportStop:3,selloColor:"#8B3A2E",rating:4.7,instagram:null,website:"https://unionhousecedarburg.com",hours:{mon:"closed",tue:"closed",wed:"closed",thu:"4PM–10PM",fri:"4PM–11PM",sat:"4PM–11PM",sun:"4PM–10PM"},tip:"Unlimited tapas: $40/person, two hours. Sunday brunch charcuterie board is excellent for two. Reservations recommended on weekends."},
+  {id:"rivoli-theatre",name:"Rivoli Theatre",address:"W62N567 Washington Ave",city:"Cedarburg",state:"WI",layers:["attractions"],passportStop:4,selloColor:"#2F4F6F",rating:4.8,instagram:null,website:"https://rivoliofcedarburg.com",hours:{mon:"7PM showtime",tue:"2:50PM — $2.50",wed:"7PM showtime",thu:"7PM showtime",fri:"7PM showtime",sat:"3:30PM & 7PM",sun:"3:30PM & 7PM"},tip:"Tuesday nights at $2.50 — sell out regularly. Get there by 6:30. The popcorn is $2. The volunteers are genuinely happy to see you."},
+  {id:"handen-distillery",name:"Handen Distillery",address:"W62N590 Washington Ave",city:"Cedarburg",state:"WI",layers:["bars","wineries"],passportStop:5,selloColor:"#6B3A2E",rating:4.8,instagram:null,website:"https://handendistillery.com",hours:{mon:"closed",tue:"closed",wed:"1PM–6PM",thu:"1PM–7PM",fri:"1PM–7PM",sat:"12PM–7PM",sun:"12PM–5PM"},tip:"Order the flight before you commit to a bottle. The Mill Race Whiskey and Original Gin are the most-loved by regulars. Women-owned. 30+ awards."},
+  {id:"cedarburg-coffee-roastery",name:"Cedarburg Coffee Roastery",address:"W62N603 Washington Ave",city:"Cedarburg",state:"WI",layers:["coffee"],passportStop:6,selloColor:"#8B5E3A",rating:4.7,instagram:null,website:null,hours:{mon:"7AM–5PM",tue:"7AM–5PM",wed:"7AM–5PM",thu:"7AM–5PM",fri:"7AM–5PM",sat:"7AM–5PM",sun:"8AM–5PM"},tip:"The Cedarburg Blend is the one to take home. Roasting on Washington Avenue since 1999. Watch the beans spin."},
+  {id:"fiddleheads-coffee",name:"Fiddleheads Coffee",address:"W62N605 Washington Ave",city:"Cedarburg",state:"WI",layers:["coffee"],passportStop:7,selloColor:"#4A6741",rating:4.5,instagram:null,website:"https://fiddleheadscoffee.com",hours:{mon:"6:30AM–7PM",tue:"6:30AM–7PM",wed:"6:30AM–7PM",thu:"6:30AM–7PM",fri:"6:30AM–7PM",sat:"7AM–7PM",sun:"7AM–7PM"},tip:"The patio in good weather is the best seat on Washington Ave. The chai is spiced with clove and not sweet by default. Family-owned since 1996."},
+  {id:"stilt-house",name:"The Stilt House",address:"W62N630 Washington Ave",city:"Cedarburg",state:"WI",layers:["restaurants","bars"],passportStop:8,selloColor:"#7A4E2E",rating:4.4,instagram:null,website:"https://stilthousegastrobar.com",hours:{mon:"11AM–10PM",tue:"11AM–10PM",wed:"11AM–10PM",thu:"11AM–10PM",fri:"11AM–10PM",sat:"11AM–10PM",sun:"11AM–10PM"},tip:"The Stilt Burger is the thing to order. The creek patio in warm weather: come at 11am before it fills. The bread pudding has been called 'off the chart.'"},
+  {id:"cedarburg-art-museum",name:"Cedarburg Art Museum",address:"W63N675 Washington Ave",city:"Cedarburg",state:"WI",layers:["museums"],passportStop:9,selloColor:"#3F5E3A",rating:4.6,instagram:null,website:"https://cedarburgartmuseum.org",hours:{mon:"closed",tue:"closed",wed:"10AM–4PM",thu:"10AM–4PM",fri:"10AM–4PM",sat:"12PM–4PM",sun:"12PM–4PM"},tip:"The second and third floor windows give a bird's-eye view of the historic district. Summer Beer Garden brings live music. Free admission."},
+  {id:"cedar-creek-winery",name:"Cedar Creek Winery",address:"N70W6340 Bridge Rd",city:"Cedarburg",state:"WI",layers:["wineries","attractions"],passportStop:10,selloColor:"#8B6914",rating:4.4,instagram:null,website:"https://cedarcreekwinery.com",hours:{mon:"10AM–5PM",tue:"10AM–5PM",wed:"10AM–5PM",thu:"10AM–5PM",fri:"10AM–6PM",sat:"10AM–6PM",sun:"10AM–5PM"},tip:"The tour goes into the limestone cellars — worth doing even if you've tasted before. The Cedarburg Spice is the bottle to take home."}
+];
+
+const LABELS = {coffee:"☕ Coffee",restaurants:"🍽 Food",bars:"🍺 Bar",breweries:"🍻 Brewery",music:"🎵 Music",arts:"🎨 Arts",galleries:"🖼 Gallery",museums:"🏛 Museum",attractions:"⭐ Must-See",shops:"🛍 Shop",history:"📜 History",outdoors:"🏔 Outdoors",bakery:"🥐 Bakery",wineries:"🍷 Winery",lodging:"🛏 Lodging",historic:"🏠 Historic",food:"🍜 Food",cannabis:"🌿 Wellness"};
+
+function hrs(h) {
+  const days = ['mon','tue','wed','thu','fri','sat','sun'];
+  const open = days.filter(d => h[d] && !h[d].toLowerCase().includes('closed') && !h[d].toLowerCase().includes('private'));
+  if (!open.length) return '— see website';
+  const times = [...new Set(open.map(d => h[d]))];
+  if (times.length === 1 && open.length === 7) return 'Daily · ' + times[0];
+  if (times.length === 1) return open.length + ' days/wk · ' + times[0];
+  return open.length + ' days/wk · from ' + h[open[0]];
+}
+
+function render(filter) {
+  const list = filter === 'all' ? SHOPS : SHOPS.filter(s => s.layers.includes(filter));
+  document.getElementById('cards').innerHTML = list.map(s => {
+    const links = [
+      s.website ? `<a class="card-link" href="${s.website.startsWith('http')?s.website:'https://'+s.website}" target="_blank" rel="noopener">Website ↗</a>` : '',
+      s.instagram ? `<a class="card-link" href="https://instagram.com/${s.instagram}" target="_blank" rel="noopener">Instagram ↗</a>` : ''
+    ].filter(Boolean).join('');
+    return `<article class="card">
+      <div class="card-bar" style="background:${s.selloColor||'var(--accent)'}"></div>
+      ${s.passportStop ? `<div class="card-stop">Stop ${s.passportStop} of 10</div>` : ''}
+      <h2 class="card-name">${s.name}</h2>
+      <div class="card-addr">${s.address} · ${s.city}, ${s.state}</div>
+      <div class="badges">${s.layers.map(l=>`<span class="badge">${LABELS[l]||l}</span>`).join('')}</div>
+      <div class="card-hours">⏱ ${hrs(s.hours)}</div>
+      ${s.tip ? `<div class="card-tip">${s.tip}</div>` : ''}
+      <div class="card-meta">
+        ${s.rating ? `<span class="card-rating">★ ${s.rating.toFixed(1)}</span>` : '<span></span>'}
+        ${links ? `<div class="card-links">${links}</div>` : ''}
+      </div>
+    </article>`;
+  }).join('');
+}
+
+function init() {
+  const layers = [...new Set(SHOPS.flatMap(s => s.layers))].filter(l => LABELS[l]);
+  const nav = document.getElementById('filters');
+  nav.innerHTML = `<button class="filter-btn active" data-f="all">All (${SHOPS.length})</button>` +
+    layers.map(l => {
+      const n = SHOPS.filter(s => s.layers.includes(l)).length;
+      return `<button class="filter-btn" data-f="${l}">${LABELS[l]} (${n})</button>`;
+    }).join('');
+  nav.addEventListener('click', e => {
+    const btn = e.target.closest('.filter-btn');
+    if (!btn) return;
+    nav.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    render(btn.dataset.f);
+  });
+}
+
+init();
+render('all');
+</script>
+</body>
+</html>
